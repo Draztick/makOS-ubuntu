@@ -29,6 +29,22 @@ fi
 
 ########  In repo installs  ###############
 
+## Recon and Information Gathering ##
+
+echo "[*] Installing Wireshark..."
+
+{
+  apt install -y wireshark 2>/dev/null
+} 2>&1 > /dev/null
+
+if [ $? -eq 0 ]; then
+  echo "[+] Wireshark installed successfully"
+else
+  echo "[-] Wireshark failed to install."
+fi
+
+## Scanning Tools ##
+
 echo "[*] Installing Nmap..."
 
 { 
@@ -40,6 +56,8 @@ if [ $? -eq 0 ]; then
 else
   echo "[-] Nmap failed to install."
 fi
+
+## 
 
 ###### Make required directories #########
 
