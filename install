@@ -27,7 +27,7 @@ else
   echo "[-] Packages failed to upgrade."
 fi
 
-########  In repo installs  ###############
+########  In-repo installs  ###############
 
 ## Recon and Information Gathering ##
 
@@ -82,3 +82,13 @@ else
     echo "[-] Nessus directory created failed."
   fi
 fi
+
+###### Manual Installations ###########
+
+
+{
+  wget http://downloads.metasploit.com/data/releases/metasploit-latest-linux-x64-installer.run
+} 2>&1 > /dev/null
+chmod +x ./metasploit-latest-linux-x64-installer.run
+./metasploit-latest-linux-x64-installer.run
+
