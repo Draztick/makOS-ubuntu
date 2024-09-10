@@ -88,9 +88,11 @@ fi
 
 ###### Manual Installations ###########
 
+echo "[*] Installing Metasploit Framework..."
 
+echo "[*] Downloading..."
 {
-  wget http://downloads.metasploit.com/data/releases/metasploit-latest-linux-x64-installer.run
+  wget -q --show-progress http://downloads.metasploit.com/data/releases/metasploit-latest-linux-x64-installer.run
 } 2>&1 > /dev/null
 chmod +x ./metasploit-latest-linux-x64-installer.run
 ./metasploit-latest-linux-x64-installer.run
