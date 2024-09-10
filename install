@@ -41,6 +41,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 if [ $? -eq 0 ]; then
   echo "[+] Wireshark installed successfully"
+  dpkg-reconfigure wireshark
 else
   echo "[-] Wireshark failed to install."
 fi
