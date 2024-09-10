@@ -43,4 +43,24 @@ fi
 
 ###### Make required directories #########
 
-mkdir /opt/ghidra
+if [ -d /opt/ghidra ]; then
+  echo "[-] Ghidra directory already exists..."
+else
+  mkdir /opt/ghidra
+  if [ $? -eq 0 ]; then
+    echo "[+] Ghidra directory created."
+  else
+    echo "[-] Ghidra directory creation failed."
+  fi
+fi
+
+if [ -d /opt/nessus ]; then
+  echo "[-] Nessus directory already exists."
+else
+  mkdir /opt/nessus
+  if [ $? -eq 0 ]; then
+    echo "[+] Nessus directory created."
+  else
+    echo "[-] Nessus directory created failed."
+  fi
+fi
