@@ -40,3 +40,7 @@ if [ $? -eq 0 ]; then
 else
   echo "[-] Nmap failed to install."
 fi
+
+###### Make required directories #########
+
+mkdir /opt/ghidra
