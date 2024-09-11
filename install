@@ -65,7 +65,7 @@ fi
 ###### Make required directories #########
 
 if [ -d /opt/ghidra ]; then
-  echo "[-] Ghidra directory already exists..."
+  echo "[-] Ghidra directory already exists."
 else
   mkdir /opt/ghidra
   if [ $? -eq 0 ]; then
@@ -92,8 +92,17 @@ echo "[*] Installing Metasploit Framework..."
 
 echo "[*] Downloading..."
 {
-  wget -q --show-progress http://downloads.metasploit.com/data/releases/metasploit-latest-linux-x64-installer.run
+  wget -q --show-progress https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb -o msfinstall
 } 2>&1 > /dev/null
-chmod +x ./metasploit-latest-linux-x64-installer.run
-./metasploit-latest-linux-x64-installer.run
+chmod +x ./msfinstall
+
+{
+  ./msfinstall
+} 2>&1 > /dev/null
+
+if [ $? -eq 0]; then
+  echo "[+] Metasploit installed successfully."
+else
+  echo "[-] Metasploit failed to install."
+fi
 
