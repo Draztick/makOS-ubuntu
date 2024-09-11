@@ -29,6 +29,20 @@ fi
 
 ########  In-repo installs  ###############
 
+## Utilities ##
+
+echo "[*] Installing utility tools (vim, curl, etc.)..."
+
+{
+  apt install -y curl vim 2&>/dev/null
+} 2>&1 > /dev/null
+
+if [ $? -eq 0 ]; then
+  echo "[+] Utility tools installed successfully."
+else
+  echo "[-] One or more utility tools failed to install."
+fi
+
 ## Recon and Information Gathering ##
 
 echo "[*] Installing Wireshark..."
