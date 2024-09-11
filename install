@@ -35,7 +35,7 @@ echo "[*] Installing utility tools (vim, curl, etc.)..."
 
 {
   apt install -y curl vim 2>&1>/dev/null
-} 
+} 2>&1 > /dev/null 
 
 if [ $? -eq 0 ]; then
   echo "[+] Utility tools installed successfully."
@@ -106,14 +106,8 @@ echo "[*] Installing Metasploit Framework..."
 
 echo "[*] Downloading..."
 {
-  curl -s https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall
+  snap install -y metasploit-framework
 } 2>&1 > /dev/null
-
-chmod +x ./msfinstall
-
-{
-  ./msfinstall
-}
 
 if [ $? -eq 0 ]; then
   echo "[+] Metasploit installed successfully."
