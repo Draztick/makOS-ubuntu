@@ -34,13 +34,25 @@ fi
 echo "[*] Installing utility tools (vim, curl, etc.)..."
 
 {
-  apt install -y curl vim 2>&1>/dev/null
+  apt install -y curl vim golang-go 2>&1>/dev/null
 } 2>&1 > /dev/null 
 
 if [ $? -eq 0 ]; then
   echo "[+] Utility tools installed successfully."
 else
   echo "[-] One or more utility tools failed to install."
+fi
+
+echo "[*] Installing golang..."
+
+{
+  wget -q --show-progress https://golang.org/dl/go1.21.6.linux-amd64.tar.gz && tar -xvf go1.21.x.linux-amd64.tar.gz -C /usr/local && echo "\n\nexport PATH=$PATH:/usr/local/go/bin" >> ~/.bashrc
+}
+
+if [ $? -eq 0 ]; then
+  echo "[+] Golang set up successfully."
+else
+  echo "[-] Golang failed to set up and must be installed manually."
 fi
 
 ## Recon and Information Gathering ##
@@ -74,7 +86,45 @@ else
   echo "[-] Nmap failed to install."
 fi
 
-## 
+echo "[*] Installing Nuclei by ProjectDiscovery..."
+
+{ 
+  go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest 2>/dev/null
+} 2>&1 > /dev/null
+
+if [ $? -eq 0 ]; then
+  echo "[+] Nmap installed successfully."
+else
+  echo "[-] Nmap failed to install."
+fi
+
+## Wireless Tools ##
+
+echo "[*] Installing Aircrack-Ng..."
+
+{ 
+  apt install -y aircrack-ng 2>/dev/null
+} 2>&1 > /dev/null
+
+if [ $? -eq 0 ]; then
+  echo "[+] Aircrack-ng installed successfully."
+else
+  echo "[-] Aircrack-ng failed to install."
+fi
+
+## Reverse Engineering Tools
+
+echo "[*] Installing Binwalk..."
+
+{ 
+  apt install -y binwalk 2>/dev/null
+} 2>&1 > /dev/null
+
+if [ $? -eq 0 ]; then
+  echo "[+] Binwalk installed successfully."
+else
+  echo "[-] Binwalk failed to install."
+fi
 
 ###### Make required directories #########
 
@@ -127,7 +177,7 @@ fi
 echo "[*] Installing Bruno..."
 
 {
-  wget -q --show-progress https://github.com/usebruno/bruno/releases/download/v1.28.0/bruno_1.28.0_amd64_linux.deb -O bruno_1.28.0_amd64_linux.deb && apt install ./bruno_1.28.0_amd64_linux.deb
+  wget -q --show-progress https://github.com/usebruno/bruno/releases/download/v1.28.0/bruno_1.28.0_amd64_linux.deb -O bruno_1.28.0_amd64_linux.deb && apt install -y ./bruno_1.28.0_amd64_linux.deb 2>&1 > /dev/null 
 } 2>&1 > /dev/null
 
 if [ $? -eq 0 ]; then
