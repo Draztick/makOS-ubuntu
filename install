@@ -127,7 +127,7 @@ fi
 echo "[*] Installing Bruno..."
 
 {
-  wget https://github.com/usebruno/bruno/releases/download/v1.28.0/bruno_1.28.0_amd64_linux.deb -O bruno_1.28.0_amd64_linux.deb && apt install ./bruno_1.28.0_amd64_linux.deb
+  wget -q --show-progress https://github.com/usebruno/bruno/releases/download/v1.28.0/bruno_1.28.0_amd64_linux.deb -O bruno_1.28.0_amd64_linux.deb && apt install ./bruno_1.28.0_amd64_linux.deb
 } 2>&1 > /dev/null
 
 if [ $? -eq 0 ]; then
