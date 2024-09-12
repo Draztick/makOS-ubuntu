@@ -46,7 +46,8 @@ fi
 echo "[*] Installing golang..."
 
 {
-  wget -q --show-progress https://golang.org/dl/go1.21.6.linux-amd64.tar.gz && tar -xvf go1.21.6.linux-amd64.tar.gz -C /usr/local && echo "\n\nexport PATH=$PATH:/usr/local/go/bin" >> ~/.bashrc
+  wget -q --show-progress https://golang.org/dl/go1.21.6.linux-amd64.tar.gz && tar -xf go1.21.6.linux-amd64.tar.gz -C /usr/local &>/dev/null 
+  echo "\n\nexport PATH=$PATH:/usr/local/go/bin" >> ~/.bashrc
 }
 
 if [ $? -eq 0 ]; then
