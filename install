@@ -114,7 +114,20 @@ if [ $? -eq 0 ]; then
   echo "[+] Metasploit installed successfully."
   rm ./msfinstall
 else
-  echo "[-] Metasploit failed to install."
-  rm ./msfinstall
+  echo "[-] Metasploit failed to install. Leaving msfinstall file for troubleshooting purposes."
 fi
+
+{
+  mkdir -p /etc/apt/keyrings && gpg --no-default-keyring --keyring /etc/apt/keyrings/bruno.gpg --keyserver keyserver.ubuntu.com --recv-keys 9FA6017ECABE0266 && echo "deb [signed-by=/etc/apt/keyrings/bruno.gpg] http://debian.usebruno.com/ bruno stable" | sudo tee /etc/apt/sources.list.d/bruno.list 
+  
+  sudo apt update 
+  sudo apt install bruno
+} 2>&1 > /dev/null
+
+if [ $? -eq 0 ]; then
+  echo "[+] Bruno successfully installed"
+else
+  echo "[-] Bruno failed to install."
+fi
+
 
